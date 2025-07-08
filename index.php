@@ -12,19 +12,133 @@ session_start();
 // include_once 'config/database.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THmanagement - Home</title>
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUa6c4WG0TJAqo8BK4ZO4lxU87lO9wbHg3LzCq/MzS8QZqYoqO8FWVn5J8J" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Immediate Language Setup -->
+    <script>
+    // Get saved language immediately
+    const currentLang = localStorage.getItem('selectedLanguage') || 'sv';
+    
+    // Set document language attribute immediately
+    document.documentElement.lang = currentLang;
+    
+    // Store current language for use after DOM loads
+    window.currentLanguage = currentLang;
+    </script>
+    
+    <style>
+        html, body {
+            height: 100%;
+            background-color: #343a40; /* Dark grey background */
+            color: #ffffff; /* White text for better readability */
+        }
+        
+        .wrapper {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background for content */
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #F5E9A1; /* Light golden yellow color for titles */
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="wrapper">
+        <?php include 'partials/navbar.php'; ?>
+        
+        <div class="content">
+            <div class="container mt-4">
+                <h1 data-translate="welcome_title">Välkommen till THmanagement</h1>
+                <p data-translate="welcome_text">Detta är en testsida för att verifiera att navigeringsfältet fungerar.</p>
+                <div class="alert alert-info">
+                    <strong>Info:</strong> <span data-translate="info_text">Om du kan se detta innehåll och navigeringsfältet ovan fungerar allt korrekt!</span>
+                </div>
+            </div>
+        </div>
+
+        <?php include 'partials/footer.php'; ?>
+    </div>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Translation System -->
+    <script>
+    // Translation dictionary
+    const translations = {
+        en: {
+            choose_language: "Choose Language",
+            welcome_title: "Welcome to THmanagement",
+            welcome_text: "This is a test page to verify the navbar is working.",
+            info_text: "If you can see this content and the navbar above, everything is working correctly!",
+            copyright: "THmanagement. All rights reserved."
+        },
+        sv: {
+            choose_language: "Välj Språk",
+            welcome_title: "Välkommen till THmanagement",
+            welcome_text: "Detta är en testsida för att verifiera att navigeringsfältet fungerar.",
+            info_text: "Om du kan se detta innehåll och navigeringsfältet ovan fungerar allt korrekt!",
+            copyright: "THmanagement. Alla rättigheter förbehållna."
+        }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+        // Update all elements with data-translate attribute
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        // Save selected language to localStorage
+        localStorage.setItem('selectedLanguage', lang);
+        
+        // Update the dropdown flag icon based on language
+        const dropdownElement = document.getElementById('languageDropdown');
+        if (dropdownElement) {
+            if (lang === 'en') {
+                dropdownElement.innerHTML = '<i class="fa fa-globe me-1"></i>🇺🇸';
+            } else {
+                dropdownElement.innerHTML = '<i class="fa fa-globe me-1"></i>🇸🇪';
+            }
+            // Maintain the light bluish grey color
+            dropdownElement.style.color = '#a8b8c8';
+        }
+        
+        // Update document language attribute
+        document.documentElement.lang = lang;
+    }
+
+    // Apply language immediately when DOM content is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedLang = window.currentLanguage || localStorage.getItem('selectedLanguage') || 'sv';
+        changeLanguage(savedLang);
+    });
+    </script>
 </body>
 </html>

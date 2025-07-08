@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset Language</title>
+</head>
+<body>
+    <h1>Resetting Language to Swedish...</h1>
+    <script>
+        // Clear the language preference
+        localStorage.removeItem('selectedLanguage');
+        
+        // Redirect to index page
+        setTimeout(function() {
+            window.location.href = 'index.php';
+        }, 1000);
+    </script>
+    <p>You will be redirected to the index page in Swedish in 1 second...</p>
+</body>
+</html>
