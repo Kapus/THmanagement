@@ -58,6 +58,7 @@ session_start();
             border-radius: 10px;
             padding: 30px;
             backdrop-filter: blur(10px);
+            max-width: 900px; /* Slightly larger width for main section */
         }
         
         h1 {
@@ -94,14 +95,16 @@ session_start();
             welcome_title: "Welcome to THmanagement",
             welcome_text: "This is a test page to verify the navbar is working.",
             info_text: "If you can see this content and the navbar above, everything is working correctly!",
-            copyright: "THmanagement. All rights reserved."
+            copyright: "THmanagement. All rights reserved.",
+            contact_us: "Contact Us"
         },
         sv: {
             choose_language: "Välj Språk",
             welcome_title: "Välkommen till THmanagement",
             welcome_text: "Detta är en testsida för att verifiera att navigeringsfältet fungerar.",
             info_text: "Om du kan se detta innehåll och navigeringsfältet ovan fungerar allt korrekt!",
-            copyright: "THmanagement. Alla rättigheter förbehållna."
+            copyright: "THmanagement. Alla rättigheter förbehållna.",
+            contact_us: "Kontakta oss"
         }
     };
 
@@ -126,8 +129,8 @@ session_start();
             } else {
                 dropdownElement.innerHTML = '<i class="fa fa-globe me-1"></i>🇸🇪';
             }
-            // Maintain the light bluish grey color
-            dropdownElement.style.color = '#a8b8c8';
+            // Maintain the light golden yellow color
+            dropdownElement.style.color = '#F5E9A1';
         }
         
         // Update document language attribute
