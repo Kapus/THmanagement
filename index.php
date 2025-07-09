@@ -53,15 +53,33 @@ session_start();
             flex: 1;
         }
         
-        .container {
+        .main-container {
             background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background for content */
             border-radius: 10px;
             padding: 30px;
             backdrop-filter: blur(10px);
             max-width: 900px; /* Slightly larger width for main section */
+            margin: 0 auto; /* Center the container */
         }
         
-        h1 {
+        /* Responsive design for main container */
+        @media (max-width: 768px) {
+            .main-container {
+                width: 95% !important;
+                margin: 0 auto;
+                padding: 20px;
+            }
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 576px) {
+            .main-container {
+                width: 98% !important;
+                padding: 15px;
+            }
+        }
+        
+        h1, h2, h3 {
             color: #F5E9A1; /* Light golden yellow color for titles */
         }
     </style>
@@ -71,7 +89,7 @@ session_start();
         <?php include 'partials/navbar.php'; ?>
         
         <div class="content">
-            <div class="container mt-4">
+            <div class="main-container mt-4">
                 <h1 data-translate="welcome_title">Välkommen till THmanagement</h1>
                 <p data-translate="welcome_text">Detta är en testsida för att verifiera att navigeringsfältet fungerar.</p>
                 <div class="alert alert-info">
